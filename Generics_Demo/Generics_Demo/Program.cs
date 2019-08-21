@@ -30,24 +30,42 @@ namespace Generics_Demo
             // alteZahlenListe.Add(null);
             #endregion
 
-            ObjectStack os = new ObjectStack();
-            os.Push(7);
-            os.Push("12");
-            os.Push(3);
-            os.Push(99);
+            #region ObjectStack
+            //ObjectStack os = new ObjectStack();
+            //os.Push(7);
+            //os.Push("12");
+            //os.Push(3);
+            //os.Push(99);
 
-            os.Push(12345);
+            //os.Push(12345);
 
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
-            Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
+            //Console.WriteLine(os.Pop());
 
-            Console.WriteLine(os.Pop()); // Exception
+            //Console.WriteLine(os.Pop()); // Exception 
+            #endregion
+
+            GenericStack<int> meinStack = new GenericStack<int>();
+            meinStack.Push(12343);
+
+            GenericStack<string> meinStack2 = new GenericStack<string>();
+            meinStack2.Push("asd");
+
+            MachEtwas(12);
+            MachEtwas("abcde");
+            MachEtwas(new GenericStack<double>());
+            MachEtwas(true);
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
+        }
+
+        private static void MachEtwas<T>(T item)
+        {
+            Console.WriteLine(item);
         }
     }
 }
