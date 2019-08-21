@@ -40,7 +40,23 @@ namespace DelegatenUndEreignisse
             //Console.WriteLine(r(12,5)); 
             #endregion
 
+            #region Action<T> und Func<T>
+            //// Action<T> - Alles ohne Rückgabe
 
+            //Action einfacheAction = A;
+            //einfacheAction += B;
+
+            //einfacheAction();
+
+            //Action<int> actionFürC = C;
+            //actionFürC(12);
+
+            //// Func<T> - Alles mit Rückgabe
+
+            //Func<int, int, int> RechnerMitFunc = Sub; 
+            #endregion
+
+            // EventHandler  => Spezialfall für Oberflächen
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
@@ -55,7 +71,6 @@ namespace DelegatenUndEreignisse
         {
             Console.WriteLine($"C{zahl}");
         }
-
         static void FabrikA(ref string text)
         {
             text += "Arbeit aus A - ";
@@ -68,7 +83,6 @@ namespace DelegatenUndEreignisse
         {
             text += "---ENDE";
         }
-
         static int Add(int z1, int z2) => z1 + z2;
         static int Sub(int z1, int z2) => z1 - z2;
     }
