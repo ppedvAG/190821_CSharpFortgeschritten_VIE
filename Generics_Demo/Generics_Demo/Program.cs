@@ -55,7 +55,7 @@ namespace Generics_Demo
             meinStack2.Push("asd");
 
             MachEtwas(12);
-            MachEtwas("abcde");
+            MachEtwas("1234");
             MachEtwas(new GenericStack<double>());
             MachEtwas(true);
 
@@ -63,9 +63,16 @@ namespace Generics_Demo
             Console.ReadKey();
         }
 
-        private static void MachEtwas<T>(T item)
+        private static void MachEtwas<T>(T item) where T : new()
         {
             Console.WriteLine(item);
+        }
+
+        private static void MachEtwasMitMehrEingaben<Teins,Tzwei>(Teins item1, Tzwei item2)
+            where Teins : struct
+            where Tzwei : class
+        {
+            Console.WriteLine($"{item1}/{item2}");
         }
     }
 }
