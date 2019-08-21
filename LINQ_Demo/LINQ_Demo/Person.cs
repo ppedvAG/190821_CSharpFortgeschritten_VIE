@@ -13,4 +13,12 @@ namespace LINQ_Demo
         public byte Alter { get; set; }
         public decimal Kontostand { get; set; }
     }
+
+    //class PersonenVergleicher : IComparer<Person>
+    //{
+    //    public int Compare(Person x, Person y)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }
