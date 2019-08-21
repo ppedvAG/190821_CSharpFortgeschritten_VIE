@@ -58,8 +58,39 @@ namespace DelegatenUndEreignisse
 
             // EventHandler  => Spezialfall für Oberflächen
 
+            // Anwendungsfall:
+
+            Button b = new Button();
+            b.ClickEvent += ButtonClick;
+            b.ClickEvent += Logger;
+
+            b.Click();
+
+            //b.ClickEvent = null;           // absolut verboten
+
+            b.Click();
+            b.Click();
+            b.ClickEvent -= Logger;
+            b.Click();
+            b.Click();
+
+            //b.ClickEvent?.Invoke();        // verboten
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
+        }
+
+        private static void Logger()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"[{DateTime.Now.ToLongTimeString()}]: Button wurde geklickt");
+            Console.ResetColor();
+        }
+
+        private static void ButtonClick()
+        {
+            Console.Beep();
+            Console.WriteLine("*click*");
         }
 
         static void A()
