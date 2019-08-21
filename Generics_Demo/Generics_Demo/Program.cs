@@ -48,16 +48,28 @@ namespace Generics_Demo
             //Console.WriteLine(os.Pop()); // Exception 
             #endregion
 
-            GenericStack<int> meinStack = new GenericStack<int>();
-            meinStack.Push(12343);
+            #region Generischer Stack
+            //GenericStack<int> meinStack = new GenericStack<int>();
+            //meinStack.Push(12343);
 
-            GenericStack<string> meinStack2 = new GenericStack<string>();
-            meinStack2.Push("asd");
+            //GenericStack<string> meinStack2 = new GenericStack<string>();
+            //meinStack2.Push("asd");
 
-            MachEtwas(12);
-            MachEtwas("1234");
-            MachEtwas(new GenericStack<double>());
-            MachEtwas(true);
+            //MachEtwas(12);
+            //MachEtwas("1234");
+            //MachEtwas(new GenericStack<double>());
+            //MachEtwas(true); 
+            #endregion
+
+            #region Indexer
+            //Dokument doc = new Dokument();
+            //doc.Text = "Das ist ein einfacher Satz.";
+            //Console.WriteLine(doc[2]);
+
+            //doc[2] = "kein";
+
+            //Console.WriteLine(doc.Text); 
+            #endregion
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
