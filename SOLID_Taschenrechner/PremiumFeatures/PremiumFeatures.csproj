@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Logic.PremiumFeatures</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

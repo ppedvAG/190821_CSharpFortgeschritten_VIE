@@ -55,17 +55,9 @@
       <Project>{C02707D3-96D9-4BE3-AFEB-178006B9D532}</Project>
       <Name>CalculatorLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FreeFeatures\FreeFeatures.csproj">
-      <Project>{E666DF6C-2B5E-43F5-B988-870922AC65C7}</Project>
-      <Name>FreeFeatures</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{2B9A8615-0383-4A27-A6B2-9151E67D556C}</Project>
       <Name>Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PremiumFeatures\PremiumFeatures.csproj">
-      <Project>{3ADAC6AF-001B-4009-B5EF-D2AB9A7DE814}</Project>
-      <Name>PremiumFeatures</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
