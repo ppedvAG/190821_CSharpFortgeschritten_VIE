@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SOLID_Taschenrechner
@@ -11,7 +12,7 @@ namespace SOLID_Taschenrechner
         // Main(): Bootstrapping
         static void Main(string[] args)
         {
-            var parser = new StringSplitParser();
+            var parser = new RegexParser();
             var calculator = new SimpleCalculator();
             new ConsoleUI(parser,calculator).Start();
         }
@@ -40,6 +41,26 @@ namespace SOLID_Taschenrechner
             output.Operator = formula[1];
 
             return output;
+        }
+    }
+
+    public class RegexParser : IParser
+    {
+        private Regex regex = new Regex(@"(\d+)\s*(\D+)\s*(\d+)");
+        public Formula Parse(string input)
+        {
+            var result = regex.Match(input);
+            if (result.Success)
+            {
+                Formula formula = new Formula();
+                formula.Value1 = Convert.ToInt32(result.Groups[1].Value);
+                formula.Value2 = Convert.ToInt32(result.Groups[3].Value);
+                formula.Operator = result.Groups[2].Value;
+
+                return formula;
+            }
+            else
+                throw new FormatException("Die Formel hat das falsche Format");
         }
     }
 
