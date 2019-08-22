@@ -13,8 +13,8 @@ namespace SOLID_Taschenrechner
         static void Main(string[] args)
         {
             var parser = new RegexParser();
-            var calculator = new SimpleCalculator();
-            new ConsoleUI(parser,calculator).Start();
+            var calculator = new ModularCalculator(new Addition(),new Subtraction());
+            new ConsoleUI(parser, calculator).Start();
         }
     }
 
@@ -46,7 +46,7 @@ namespace SOLID_Taschenrechner
 
     public class RegexParser : IParser
     {
-        private Regex regex = new Regex(@"(\d+)\s*(\D+)\s*(\d+)");
+        private Regex regex = new Regex(@"(\d+)\s*(\D+?)\s*(\d+)");
         public Formula Parse(string input)
         {
             var result = regex.Match(input);
@@ -80,6 +80,41 @@ namespace SOLID_Taschenrechner
             else
                 throw new InvalidOperationException($"Der Operator {formula.Operator} wird nicht unterstützt");
         }
+    }
+    public class ModularCalculator : ICalculator
+    {
+        public ModularCalculator(params ICalculationMethod[] calculationMethods)
+        {
+            this.calculationMethods = calculationMethods;
+        }
+
+        private readonly ICalculationMethod[] calculationMethods;
+        public int Calculate(Formula formula)
+        {
+            var calcMethod = calculationMethods.FirstOrDefault(x => x.Operator == formula.Operator);
+            if (calcMethod == null)
+                throw new InvalidOperationException($"Der Operator {formula.Operator} wird nicht unterstützt");
+
+            return calcMethod.Calculate(formula.Value1, formula.Value2);
+        }
+    }
+
+    public interface ICalculationMethod
+    {
+        string Operator { get; }
+        int Calculate(int Value1, int Value2);
+    }
+
+    public class Addition : ICalculationMethod
+    {
+        public string Operator => "+";
+        public int Calculate(int Value1, int Value2) => Value1 + Value2;
+    }
+
+    public class Subtraction : ICalculationMethod
+    {
+        public string Operator => "-";
+        public int Calculate(int Value1, int Value2) => Value1 - Value2;
     }
 
     public class ConsoleUI
