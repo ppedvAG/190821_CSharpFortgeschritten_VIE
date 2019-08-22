@@ -29,16 +29,39 @@ namespace AsyncAwait_Demo
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Start");
-            await Task.Run(() =>
+            //await Task.Run(() =>
+            //{
+            //    for (int i = 0; i <= 100; i++)
+            //    {
+            //        Thread.Sleep(100);
+            //        // Logik auf dem UI-Thread ausführen
+            //        Dispatcher.Invoke(() => progressBarWert.Value = i);
+            //    }
+            //});
+
+            Task t1 = Task.Run(() =>
             {
-                for (int i = 0; i <= 100; i++)
-                {
-                    Thread.Sleep(100);
-                    // Logik auf dem UI-Thread ausführen
-                    Dispatcher.Invoke(() => progressBarWert.Value = i);
-                }
+                Thread.Sleep(3000);
             });
+            Task t2 = Task.Run(() =>
+            {
+                Thread.Sleep(5000);
+            });
+            Task t3 = Task.Run(() =>
+            {
+                Thread.Sleep(10000);
+            });
+            
+            await Watchdog(t1, t2, t3);
             MessageBox.Show("Ende");
+        }
+
+        private async Task Watchdog(params Task[] tasksToAwait)
+        {
+            while(tasksToAwait.Any(x => x.IsCompleted == false))
+            {
+                await Task.Delay(100);
+            }
         }
     }
 }
