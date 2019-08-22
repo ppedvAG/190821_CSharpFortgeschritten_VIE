@@ -11,7 +11,9 @@ namespace SOLID_Taschenrechner
         // Main(): Bootstrapping
         static void Main(string[] args)
         {
-            new ConsoleUI().Start();
+            var parser = new StringSplitParser();
+            var calculator = new SimpleCalculator();
+            new ConsoleUI(parser,calculator).Start();
         }
     }
 
@@ -22,7 +24,11 @@ namespace SOLID_Taschenrechner
         public string Operator { get; set; }
     }
 
-    public class StringSplitParser
+    public interface IParser
+    {
+        Formula Parse(string input);
+    }
+    public class StringSplitParser : IParser
     {
         public Formula Parse(string input)
         {
@@ -37,7 +43,11 @@ namespace SOLID_Taschenrechner
         }
     }
 
-    public class SimpleCalculator
+    public interface ICalculator
+    {
+        int Calculate(Formula formula);
+    }
+    public class SimpleCalculator : ICalculator
     {
         public int Calculate(Formula formula)
         {
@@ -53,6 +63,15 @@ namespace SOLID_Taschenrechner
 
     public class ConsoleUI
     {
+        public ConsoleUI(IParser parser, ICalculator calculator)
+        {
+            this.parser = parser;
+            this.calculator = calculator;
+        }
+
+        private readonly IParser parser;
+        private readonly ICalculator calculator;
+
         // Definiert den Programm-Workflow
         public void Start()
         {
@@ -61,11 +80,9 @@ namespace SOLID_Taschenrechner
             string input = Console.ReadLine();
 
             // Parsen
-            StringSplitParser parser = new StringSplitParser();
             Formula formula = parser.Parse(input);
 
             // Berechnen
-            SimpleCalculator calculator = new SimpleCalculator();
             int result = calculator.Calculate(formula);
 
             // UI
