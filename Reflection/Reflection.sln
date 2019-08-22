@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reflection", "Reflection\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taschenrechner", "Taschenrechner\Taschenrechner.csproj", "{C84609D6-82AD-4963-9BA6-E8655894F3A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrumpTaschenrechner", "TrumpTaschenrechner\TrumpTaschenrechner.csproj", "{BB709918-39AB-4377-8AD7-3E85AE6DA0D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C84609D6-82AD-4963-9BA6-E8655894F3A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C84609D6-82AD-4963-9BA6-E8655894F3A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C84609D6-82AD-4963-9BA6-E8655894F3A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB709918-39AB-4377-8AD7-3E85AE6DA0D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB709918-39AB-4377-8AD7-3E85AE6DA0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB709918-39AB-4377-8AD7-3E85AE6DA0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB709918-39AB-4377-8AD7-3E85AE6DA0D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
