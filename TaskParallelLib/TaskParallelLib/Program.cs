@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -96,9 +97,66 @@ namespace TaskParallelLib
             //}
             #endregion
 
+            // Parallel
+            int[] durchgänge = { 10_000, 50_000, 100_000, 250_000, 500_000, 1_000_000, 5_000_000, 10_000_000 };
+            Stopwatch watch = new Stopwatch();
+
+            // JIT - Compiler
+            ForTest(5);
+            ParallelTest(5);
+
+            for (int i = 0; i < durchgänge.Length; i++)
+            {
+                Console.WriteLine($"----- Aktueller Durchgang: {durchgänge[i]} -----");
+                watch.Restart();
+                ParallelTest(durchgänge[i]);
+                watch.Stop();
+                Console.WriteLine($"Parallel: {watch.ElapsedMilliseconds}ms");
+
+                watch.Restart();
+                ForTest(durchgänge[i]);
+                watch.Stop();
+                Console.WriteLine($"For: {watch.ElapsedMilliseconds}ms");
+            }
+
+            // ForEach
+            //Parallel.ForEach(meineListe, item =>
+            // {
+            //    //Logik für item
+            // });
+
+            // PLINQ
+            //int[] zahlen = null;
+            //zahlen.AsParallel()
+            //    .WithDegreeOfParallelism(2)
+            //    .Where(x => x % 2 == 0)
+            //    // .AsSequential()
+            //    .ToList();
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
         }
+
+        public static void ParallelTest(int durchgänge)
+        {
+            double[] data = new double[durchgänge];
+            Parallel.For(0, durchgänge,new ParallelOptions { MaxDegreeOfParallelism = 2 }, i =>
+             {
+                 data[i] = Math.Pow(i, 0.77777) * Math.Sqrt(Math.Sin(i));
+             });
+        }
+        public static void ForTest(int durchgänge)
+        {
+            double[] data = new double[durchgänge];
+            for (int i = 0; i < durchgänge; i++)
+            {
+                data[i] = Math.Pow(i, 0.77777) * Math.Sqrt(Math.Sin(i));
+            }
+        }
+
+
+
+
 
         private static void WirfEineException()
         {
