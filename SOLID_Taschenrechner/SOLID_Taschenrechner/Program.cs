@@ -1,5 +1,6 @@
 ﻿using CalculatorLogic;
 using FreeFeatures;
+using PremiumFeatures;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,11 @@ namespace SOLID_Taschenrechner
         static void Main(string[] args)
         {
             var parser = new RegexParser();
-            var calculator = new ModularCalculator(new Addition(),new Subtraction());
+            var calculator = new ModularCalculator(new Addition(), new Subtraction(), new Multiplication(), new Division());
             new ConsoleUI(parser, calculator).Start();
+
+            // Übung: DLL "PaidFeatures"
+            // Multiplikation, Division
         }
     }
 
